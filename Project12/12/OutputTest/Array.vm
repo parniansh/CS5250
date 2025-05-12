@@ -1,0 +1,36 @@
+function Array.new 0
+    push argument 0
+    call Memory.allocc 1
+    pop this 0
+    push pointer 0
+    return
+function Array.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function Array.set 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    add
+    push argument 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 0
+    return
+function Array.get 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    return

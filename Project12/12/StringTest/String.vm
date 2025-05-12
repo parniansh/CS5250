@@ -1,0 +1,222 @@
+function String.new 0
+    push constant 2
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    call Array.new 1
+    pop this 0
+    push constant 0
+    pop this 1
+    push pointer 0
+    return
+function String.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Array.dispose 1
+    pop temp 0
+    push constant 0
+    return
+function String.length 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function String.charAt 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    call Array.get 2
+    return
+function String.setCharAt 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    push argument 2
+    call Array.set 3
+    pop temp 0
+    push constant 0
+    return
+function String.appendChar 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push this 1
+    push argument 1
+    call Array.set 3
+    pop temp 0
+    push this 1
+    push constant 1
+    add
+    pop this 1
+    push pointer 0
+    return
+function String.eraseLastChar 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    push constant 0
+    gt
+    not
+    if-goto String_1
+    push this 1
+    push constant 1
+    sub
+    pop this 1
+    goto String_0
+label String_1
+label String_0
+    push constant 0
+    return
+function String.intValue 3
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+    push constant 0
+    pop local 2
+label String_2
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto String_3
+    push this 0
+    push local 0
+    call Array.get 2
+    pop local 1
+    push local 1
+    push constant 48
+    lt
+    not
+    if-goto String_5
+    push local 2
+    return
+    goto String_4
+label String_5
+label String_4
+    push local 1
+    push constant 57
+    gt
+    not
+    if-goto String_7
+    push local 2
+    return
+    goto String_6
+label String_7
+label String_6
+    push local 2
+    push constant 10
+    call Math.multiply 2
+    push local 1
+    push constant 48
+    sub
+    add
+    pop local 2
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto String_2
+label String_3
+    push local 2
+    return
+function String.setInt 6
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop this 1
+    push argument 1
+    push constant 0
+    eq
+    not
+    if-goto String_9
+    push pointer 0
+    push constant 48
+    call String.appendChar 2
+    pop temp 0
+    push constant 0
+    return
+    goto String_8
+label String_9
+label String_8
+    push argument 1
+    pop local 2
+    push constant 5
+    call Array.new 1
+    pop local 4
+    push local 2
+    pop local 0
+label String_10
+    push local 0
+    push constant 0
+    gt
+    not
+    if-goto String_11
+    push local 0
+    push constant 10
+    call Math.divide 2
+    pop local 3
+    push local 0
+    push local 3
+    push constant 10
+    call Math.multiply 2
+    sub
+    pop local 1
+    push local 4
+    push this 1
+    push local 1
+    push constant 48
+    add
+    call Array.set 3
+    pop temp 0
+    push this 1
+    push constant 1
+    add
+    pop this 1
+    push local 0
+    push constant 10
+    call Math.divide 2
+    pop local 0
+    goto String_10
+label String_11
+    push constant 0
+    pop local 5
+label String_12
+    push local 5
+    push this 1
+    lt
+    not
+    if-goto String_13
+    push pointer 0
+    push local 4
+    push this 1
+    push local 5
+    sub
+    push constant 1
+    sub
+    call Array.get 2
+    call String.appendChar 2
+    pop temp 0
+    push local 5
+    push constant 1
+    add
+    pop local 5
+    goto String_12
+label String_13
+    push local 4
+    call Array.dispose 1
+    pop temp 0
+    push constant 0
+    return
+function String.newLine 0
+    push constant 10
+    return
+function String.backSpace 0
+    push constant 8
+    return
+function String.doubleQuote 0
+    push constant 34
+    return
